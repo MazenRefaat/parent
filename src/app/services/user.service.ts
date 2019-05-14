@@ -4,6 +4,7 @@ import {
 import {
   HttpClient,
   HttpHeaders,
+  HttpParams,
 } from '@angular/common/http';
 import {
   Observable
@@ -27,8 +28,10 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   // Service Function to list Users
-  listUsers(): Observable < any > {
-    return this.http.get(this.baseUrl + this.usersUrl);
+  listUsers(page): Observable < any > {
+    let params = new HttpParams()
+    .set('page', page);
+    return this.http.get(this.baseUrl + this.usersUrl, {params : params});
   }
 
   // Service Function to get One User 

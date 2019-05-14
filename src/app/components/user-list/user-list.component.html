@@ -11,9 +11,9 @@
   </div>
 </div>
 
-<div class="users-wrapper">
+<div id="usersContainer" class="users-wrapper">
   <!-- Users List -->
-  <div class="user-list">
+  <div class="user-list" >
     <div class="user-list__header">
       <div class="user-col">
         <p class="font-roboto font-light font-size-12 color-grey">
@@ -52,6 +52,14 @@
         <button (click)="selectUser(user)" class="btn btn-plain btn-select">
           <fa-icon class="font-size-15 color-main" [icon]="faChevronRight"></fa-icon>
         </button>
+      </div>
+    </div>
+
+    <div *ngIf="loadingUsers" class="user-list__spinner text-center">
+      <div class="spinner">
+          <div class="spinner__dot"></div>
+          <div class="spinner__dot"></div>
+          <div class="spinner__dot"></div>
       </div>
     </div>
   </div>

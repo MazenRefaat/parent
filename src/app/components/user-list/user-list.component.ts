@@ -1,6 +1,7 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  HostListener
 } from '@angular/core';
 
 import {
@@ -33,6 +34,15 @@ export class UserListComponent implements OnInit {
   // actionType (String) representing the type of action to be made on user
   actionType = '';
 
+  // Current Page of Users 
+  currentPage = 1;
+
+  // Boolean Flag for showing loading spinner
+  loadingUsers: boolean = false;
+
+  // Boolean Flag to detect end of Users data
+  doneLoadingUsers: boolean = false;
+
   //Fontawesome Icons
   faChevronRight = faChevronRight;
   faTimes = faTimes;
@@ -45,14 +55,43 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.listUsers();
+    setTimeout(() => {
+      this.currentPage++;
+      this.listUsers();
+    },3000);
+
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  handleScroll($event){
+    let scrollEnded = (document.documentElement.offsetHeight - document.documentElement.scrollTop) == document.documentElement.clientHeight;
+    if(scrollEnded)   {
+      this.currentPage++;
+      this.listUsers();
+    }
   }
 
   listUsers() {
-    this.userService.listUsers()
-      .subscribe(usersData => {
-        this.users = usersData.data
-      })
+    if (!this.doneLoadingUsers) {
+      this.loadingUsers = true;
+      this.userService.listUsers(this.currentPage)
+        .subscribe(usersData => {
+            if (usersData.data.length == 0) {
+              this.doneLoadingUsers = true;
+              this.loadingUsers = false;
+            } else {
+              this.users.push(...usersData.data);
+              this.loadingUsers = false;
+            }
+            console.log(usersData.data.length == 0, usersData);
+          },
+          error => {
+            console.log(error);
+          }
+        )
+    }
   }
+
   editUser(user) {
     event.stopPropagation();
     this.currentUser = user;
@@ -142,8 +181,6 @@ export class UserListComponent implements OnInit {
         catch(err) {
           this.toaster.error(err);
         }
-
-        
       } else {
         this.currentUser = {};
       }

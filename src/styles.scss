@@ -115,6 +115,35 @@ body {
     padding: 0;
 }
 
+.spinner {
+    display: flex;
+    justify-content: space-around;
+    width: 50px;
+    margin: 15px auto;
+    &__dot {
+        width: 10px;
+        height: 10px;
+        background-color: #777;
+        border-radius: 50%;
+        animation-name: fade;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        &:first-child {
+            animation-delay: 1s;
+            animation-duration: 3s;
+        }
+        &:nth-child(2) {
+            animation-delay: 2s;
+            animation-duration: 3s;
+        }
+        &:last-child {
+            animation-delay: 3s;
+            animation-duration: 3s;
+        }
+    }
+}
+
 // Form Inputs Styling
 .form-item {
     display: flex;
@@ -132,4 +161,27 @@ body {
             outline: none;
         }
     }
+}
+
+
+// Animations 
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
 }
