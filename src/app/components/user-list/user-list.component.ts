@@ -3,8 +3,16 @@ import {
   OnInit
 } from '@angular/core';
 
-import {faChevronRight} from '@fortawesome/fontawesome-free-solid'
-import { UserService } from 'src/app/services/user.service';
+import {
+  faChevronRight,
+  faTimes
+} from '@fortawesome/fontawesome-free-solid'
+import {
+  UserService
+} from 'src/app/services/user.service';
+import {
+  ToastrService
+} from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-list',
@@ -13,59 +21,140 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserListComponent implements OnInit {
 
-  // users: Object = [{
-  //     "id": 4,
-  //     "email": "eve.holt@reqres.in",
-  //     "first_name": "Eve",
-  //     "last_name": "Holt",
-  //     "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/marcoramires/128.jpg"
-  //   },
-  //   {
-  //     "id": 5,
-  //     "email": "charles.morris@reqres.in",
-  //     "first_name": "Charles",
-  //     "last_name": "Morris",
-  //     "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/stephenmoon/128.jpg"
-  //   },
-  //   {
-  //     "id": 6,
-  //     "email": "tracey.ramos@reqres.in",
-  //     "first_name": "Tracey",
-  //     "last_name": "Ramos",
-  //     "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/bigmancho/128.jpg"
-  //   }
-  // ]
+  // users (Array) representing users to be listed
+  users = [];
 
-  users: Object = [];
+  // selectedUser (Object) representing the selected User
+  selectedUser = {};
 
+  // currentUser (Object) representing the current User to make action to 
+  currentUser: any = {};
+
+  // actionType (String) representing the type of action to be made on user
+  actionType = '';
+
+  //Fontawesome Icons
   faChevronRight = faChevronRight;
+  faTimes = faTimes;
+
+
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private toaster: ToastrService
   ) {}
 
   ngOnInit() {
     this.listUsers();
-    // .subscribe( usersData => {
-    //   console.log(usersData);
-    // })
   }
 
   listUsers() {
     this.userService.listUsers()
-    .subscribe( usersData => {
-      this.users = usersData.data
-      // console.log(usersData.data)
-    })
+      .subscribe(usersData => {
+        this.users = usersData.data
+      })
   }
   editUser(user) {
-    console.log(user);
+    event.stopPropagation();
+    this.currentUser = user;
+    this.actionType = 'edit';
   }
 
   deleteUser(user) {
-    console.log(user);
+    event.stopPropagation();
+    this.currentUser = user;
+    this.actionType = 'delete';
   }
 
-  showUser(user) {
-    console.log(user);
+  createNewUser() {
+    this.currentUser = {
+      "first_name": "",
+      "last_name": ""
+    }
+    this.actionType = 'new';
+  }
+
+  selectUser(user) {
+    this.userService.getUser(user.id)
+      .subscribe(
+        (res) => {
+          console.log(res);
+          this.selectedUser = res.data;
+        },
+        (err) => {
+          console.log(err);
+        }
+      )
+  }
+
+  closeUser() {
+    this.selectedUser = {};
+  }
+
+  handleModalAction($event) {
+    // console.log($event);
+    if ($event.action == 'edit') {
+      if ($event.target.id == 'save') {
+        let {
+          id,
+          ...editUser
+        } = this.currentUser;
+
+        editUser.first_name = $event.user.first_name;
+        editUser.last_name = $event.user.last_name;
+
+        this.userService.editUser(id, editUser)
+          .subscribe((res) => {
+            this.toaster.success('User Edited Successfully');
+            console.log(res);
+          })
+        this.currentUser = {};
+      } else {
+        this.currentUser = {};
+      }
+    } else if ($event.action == 'delete') {
+      if ($event.target.id == 'confirm') {
+        this.userService.deleteUser(this.currentUser)
+          .subscribe(() => {
+            this.toaster.success('User Deleted Successfully');
+          })
+
+        this.currentUser = {};
+      } else {
+        this.currentUser = {};
+      }
+    } else {
+      if ($event.target.id == 'save') {
+        try {
+          this.userService.createUser($event.user)
+
+            .subscribe(
+              (res) => {
+                console.log(res);
+                this.toaster.success('User Created Successfully');
+                this.currentUser = {};
+              },
+              (err) => {
+                this.toaster.error(err);
+                // console.log(err);
+              }
+            )
+        }
+        catch(err) {
+          this.toaster.error(err);
+        }
+
+        
+      } else {
+        this.currentUser = {};
+      }
+    }
+  }
+
+  handleUserAction($event) {
+    if ($event.id == 'delete') {
+      this.deleteUser(this.selectedUser);
+    } else {
+      this.editUser(this.selectedUser);
+    }
   }
 }

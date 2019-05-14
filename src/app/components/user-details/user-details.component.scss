@@ -1,0 +1,27 @@
+.user-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-width: 260px;
+    background-color: #F5F5F5;
+    
+    &__avatar {
+        height: 127px;
+        width: 127px;
+        overflow: hidden;
+        border-radius: 50%;
+        margin: 15px 0
+    }
+
+    &__actions { 
+        display: flex; 
+        justify-content: space-around;
+        width: 100%;
+        
+        .action {
+            min-width: 110px;
+        }
+    }
+}
+

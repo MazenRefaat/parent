@@ -22,18 +22,20 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      username: '',
+      email: '',
       password: ''
     });
 
   }
 
-  // doLogin() {
-  //   console.log('asd');
-  //   this.router.navigate(['/user-list'])
-  // }
   doLogin() {
-    this.userService.userLogin({'email': 'eve.holt@reqres.in', 'password': 'cityslicka'})
+    let user = {
+      'email': this.loginForm.value.email,
+      'password': this.loginForm.value.password
+    }
+
+    //{'email': 'eve.holt@reqres.in', 'password': 'cityslicka'}
+    this.userService.userLogin(user)
     .subscribe( 
       userToken => {
         this.toaster.success('Login Successful');

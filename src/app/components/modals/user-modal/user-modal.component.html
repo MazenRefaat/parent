@@ -1,0 +1,70 @@
+<!-- User Delete confirmation Modal -->
+<div *ngIf="action =='delete'" class="modal user-delete">
+  <div class="modal__wrapper">
+    <div class="user-info">
+      <h3 class="font-roboto font-size-15 font-light color-grey text-center ">
+        Are you sure you want to delete
+      </h3>
+
+      <p class="font-roboto font-size-14 color-main text-center">
+        {{user.first_name}} {{user.last_name}}
+      </p>
+    </div>
+
+    <div class="modal__actions">
+      <div class="modal-btn">
+        <button class="btn btn-primary btn-primary--bordered font-roboto font-size-15 font-light" id="no"
+          (click)="doAction(e)">
+          No
+        </button>
+      </div>
+
+      <div class="modal-btn">
+        <button class="btn btn-primary  font-roboto font-size-15 font-light" id="confirm" (click)="doAction(e)">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- User Edit Modal -->
+<div *ngIf="action =='edit' || action =='new'" class="modal user-edit">
+    <div class="modal__wrapper">
+      <div class="user-info">
+        <div class="user-info__avatar">
+            <img *ngIf="user.avatar" class="img" [src]="user.avatar" [alt]="user.first_name" [title]="user.first_name">
+        </div>
+        <form class="edit-form" [formGroup] = "editForm">
+            <div class="form-item">
+                <label class="form-item__label font-roboto font-size-14 color-grey font-light" for="firstName">First Name</label>
+      
+                <input class="form-item__input font-roboto font-size-14 color-grey font-light" type="text" formControlName="firstName" />
+            </div>
+            
+            <div class="form-item">
+                <label class="form-item__label font-roboto font-size-14 color-main font-light" for="lastName">Last Name</label>
+      
+                <input class="form-item__input font-roboto font-size-14 color-main font-light" type="text" formControlName="lastName" />
+            </div>
+          </form>
+      </div>
+  
+      <div class="modal__actions">
+        <div class="modal-btn">
+          <button class="btn btn-primary btn-primary--bordered font-roboto font-size-15 font-light" id="cancel"
+            (click)="doAction(e)">
+            Cancel
+          </button>
+        </div>
+  
+        <div class="modal-btn">
+          <button class="btn btn-primary  font-roboto font-size-15 font-light" id="save" (click)="doAction(e)">
+            {{
+              action == "edit" ? "Save" : "Add"
+            }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

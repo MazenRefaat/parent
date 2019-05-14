@@ -8,6 +8,22 @@ body {
     margin: 0;
 }
 
+
+.img {
+    width: 100%;
+    height: auto;
+}
+
+.toast-container {
+    .ngx-toastr {
+        font-family: 'Roboto';
+        text-transform: capitalize;
+    }
+} 
+
+
+
+/* Font Classes for common used font styles */
 .font-roboto {
     font-family: 'Roboto', sans-serif;
 }
@@ -48,6 +64,19 @@ body {
     color: #7F8C8D;
 }
 
+.text-center { 
+    text-align: center;
+}
+
+.text-right { 
+    text-align: right;
+}
+
+.text-left { 
+    text-align: left;
+}
+/* Button Classes for common used button styles */
+
 .btn {
     cursor: pointer;
     &:focus {
@@ -55,12 +84,20 @@ body {
     }
 }
 .btn-primary {
+    width: 100%;
     background-color: #8E44AD;
     color: #fff;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
     border-radius: 20px;
     padding: 9px 25px;
     text-transform: uppercase;
+    
+
+    &--bordered {
+        border: 1px solid #8E44AD;
+        background-color: #fff;
+        color: #8E44AD;
+    }
 }
 
 .btn-action {
@@ -75,11 +112,24 @@ body {
 .btn-plain {
     background-color: transparent;
     border: none;
+    padding: 0;
 }
 
-.toast-container {
-    .ngx-toastr {
-        font-family: 'Roboto';
-        text-transform: capitalize;
+// Form Inputs Styling
+.form-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+
+    &__input {
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: none;
+        border: 1px solid #D6DBE4;
+
+        &:focus {
+            outline: none;
+        }
     }
-} 
+}

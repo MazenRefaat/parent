@@ -12,13 +12,17 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';  
 import { ToastrModule } from 'ngx-toastr';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { UserModalComponent } from './components/modals/user-modal/user-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HeaderComponent,
-    UserListComponent
+    UserListComponent,
+    UserDetailsComponent,
+    UserModalComponent
   ],
   imports: [
     BrowserModule,

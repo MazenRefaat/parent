@@ -10,32 +10,58 @@
     align-items: center;
 }
 
-.user-list { 
+.users-wrapper {
+    display: flex;
     width: 60%;
-    background-color: #fff;
-    border-radius: 15px;
+    margin: 0 auto;
     margin: 30px auto;
-    padding: 15px;
+    padding: 0;
+    border-radius: 15px;
+    background-color: #fff;
     box-shadow: 0 1px 3px 0px #aaa;
     box-sizing: border-box;
+    overflow: hidden;
+}
+
+.user-list { 
+    padding: 15px;
+    box-sizing: border-box;
+    flex: 1 1 80%;
 
     &__header {
         display: flex;
     }
+
+    &__item:hover {
+        background-color: #f1f1f1;
+    }
+}
+
+.user-details-wrapper {
+    flex: 0 1 0;
+    background-color: #f5f5f5;
+    box-shadow: -3px 0 3px -1px #aaa;
+    padding: 15px;
+    
+    &__close {
+        align-self: flex-end;
+        text-align: right;
+    }
 }
 
 .user-col {
-    flex: 0 0 80%;
+    flex: 1 0 85%;
 }
 
 .action-col {
-    flex: 0 0 20%;
+    flex: 0 0 15%;
 }
 
 .user {
     display: flex;
     border-bottom: 1px solid #DEDEDE;
-    padding: 25px 0;
+    padding: 25px 15px;
+    cursor: pointer;
 
     &__avatar {
         width: 55px;
@@ -43,6 +69,7 @@
         border-radius: 50%;
         overflow: hidden;
         margin-right: 10px;
+        border: 1px solid #fff;
         
         .img {
             width: 100%;
@@ -63,5 +90,19 @@
     }
     &:last-child {
         border: none;
+    }
+
+    &.active {
+        background-color: #8E44AD;
+
+        .user__name-text {
+            color: #fff;
+        }
+
+        .btn-select {
+            fa-icon {
+                color: #fff;
+            }
+        }
     }
 }

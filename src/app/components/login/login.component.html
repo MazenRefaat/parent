@@ -20,15 +20,14 @@
     </p>
 
     <form [formGroup] = "loginForm">
-      <!-- Value : {{ loginForm.value | json }} -->
       <div class="form-item">
-          <label class="form-item__label font-roboto font-size-14 color-grey font-light" for="username">Username</label>
+          <label class="form-item__label font-roboto font-size-14 color-grey font-light" for="email">Email</label>
 
-          <input class="form-item__input font-roboto font-size-14 color-grey font-light" type="text" formControlName="username" placeholder="Username..." />
+          <input class="form-item__input font-roboto font-size-14 color-grey font-light" type="email" formControlName="email" placeholder="Email..." />
       </div>
       
       <div class="form-item">
-          <label class="form-item__label font-roboto font-size-14 color-main font-light" for="username">Password</label>
+          <label class="form-item__label font-roboto font-size-14 color-main font-light" for="password">Password</label>
 
           <input class="form-item__input font-roboto font-size-14 color-main font-light" type="password" formControlName="password" placeholder="Password..." />
       </div>

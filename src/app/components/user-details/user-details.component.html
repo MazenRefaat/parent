@@ -1,0 +1,29 @@
+<div class="user-details">
+  <div class="user-details__avatar">
+    <img class="img" [src]="user.avatar" [alt]="user.first_name" [title]="user.first_name">
+  </div>
+
+  <div class="user-details__info">
+    <h2 class="font-roboto font-size-25 font-light color-main">
+      {{ user.first_name }} {{ user.last_name }}
+    </h2>
+  </div>
+
+  <div class="user-details__actions">
+    <div class="action action-edit">
+      <button class="btn btn-primary font-roboto font-size-15 font-light" id="edit" (click)="doUserAction()">
+        <img src="assets/edit-icon-white.svg" alt="Edit" title="Edit">
+        Edit
+      </button>
+    </div>
+
+    <div class="action action-delete">
+      <button class="btn btn-primary btn-primary--bordered font-roboto font-size-15 font-light color-main" id="delete"
+        (click)="doUserAction()">
+        <img src="assets/delete-icon.svg" alt="Delete" title="Delete">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
+
