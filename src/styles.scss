@@ -1,1 +1,85 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Roboto Font (the closest available font to San Fransisco) */
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+
+body {
+    background-color: #F5F5F5;
+    margin: 0;
+}
+
+.font-roboto {
+    font-family: 'Roboto', sans-serif;
+}
+
+.font-size-12 {
+    font-size: 12px;
+}
+
+.font-size-14 {
+    font-size: 15px;
+}
+
+.font-size-15 {
+    font-size: 15px;
+}
+
+.font-size-25 {
+    font-size: 25px
+}
+
+.font-light {
+    font-weight: 300;
+}
+
+.font-normal {
+    font-weight: normal
+}
+
+.font-bold {
+    font-weight: bold
+}
+
+.color-main {
+    color: #34495E;
+}
+
+.color-grey {
+    color: #7F8C8D;
+}
+
+.btn {
+    cursor: pointer;
+    &:focus {
+        outline: none;
+    }
+}
+.btn-primary {
+    background-color: #8E44AD;
+    color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+    border-radius: 20px;
+    padding: 9px 25px;
+    text-transform: uppercase;
+}
+
+.btn-action {
+    background-color: transparent;
+    border: 1px solid #8E44AD;
+    border-radius: 3px;
+    width: 32px;
+    height: 32px;
+    margin-right: 5px;
+}
+
+.btn-plain {
+    background-color: transparent;
+    border: none;
+}
+
+.toast-container {
+    .ngx-toastr {
+        font-family: 'Roboto';
+        text-transform: capitalize;
+    }
+} 

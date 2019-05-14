@@ -1,0 +1,45 @@
+<!-- Header Component-->
+<app-header></app-header>
+
+<div class="login-wrapper">
+  <div class="login-wrapper__img">
+    <img class="img" src="assets/login-img@3x.png" alt="Spaces" title="Spaces">
+  </div>
+
+  <div class="login-wrapper__form login-form">
+    <h2 class="font-roboto font-size-25 font-normal color-main">
+      Welcome Back!
+    </h2>
+
+    <p class="font-roboto font-size-15 font-light color-grey">
+        Please login to access your 
+        <span class="color-main">
+            Spaces
+        </span>
+        Dashboard
+    </p>
+
+    <form [formGroup] = "loginForm">
+      <!-- Value : {{ loginForm.value | json }} -->
+      <div class="form-item">
+          <label class="form-item__label font-roboto font-size-14 color-grey font-light" for="username">Username</label>
+
+          <input class="form-item__input font-roboto font-size-14 color-grey font-light" type="text" formControlName="username" placeholder="Username..." />
+      </div>
+      
+      <div class="form-item">
+          <label class="form-item__label font-roboto font-size-14 color-main font-light" for="username">Password</label>
+
+          <input class="form-item__input font-roboto font-size-14 color-main font-light" type="password" formControlName="password" placeholder="Password..." />
+      </div>
+
+      <div class="forgot-password">
+        <a class="forgot-password__link font-roboto font-size-14 font-light color-blue col"routerLink="/">Forgot Password?</a>
+
+        <div class="form-item">
+          <button class="btn btn-primary font-roboto font-size-15 font-light" type="submit" (click)="doLogin()">Login</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

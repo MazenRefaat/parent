@@ -1,0 +1,55 @@
+<!-- Header Component -->
+<app-header></app-header>
+
+<div class="breadcrumb">
+    <div>
+        <h1 class="font-roboto">Users List</h1>
+    </div>
+
+    <div>
+        <button class="btn btn-primary font-roboto font-size-15 font-light" (click)="addNewUser()">+ New User</button>
+    </div>
+</div>
+
+<div class="user-list">
+    <div class="user-list__header">
+        <div class="user-col">
+            <p class="font-roboto font-light font-size-12 color-grey">
+                User
+            </p>
+        </div>
+
+        <div class="action-col">
+            <p class="font-roboto font-light font-size-12 color-grey">
+                Actions
+            </p>
+        </div>
+    </div>
+    <div *ngFor="let user of users" class="user-list__item user">
+        <div class="user-col">
+            <div class="user__avatar">
+                <img class="img" [src]="user.avatar" alt="{{user.first_name}}" title="Avatar">
+            </div>
+
+            <div class="user__name">
+                <p class="font-roboto font-size-15 font-light color-main">
+                    {{ user.first_name }} {{ user.last_name}}
+                </p>
+            </div>
+        </div>
+
+        <div class="action-col">
+            <button (click)="editUser(user)" class="btn btn-action">
+                <img src="assets/edit-icon.svg" alt="Edit" title="Edit">
+            </button>
+
+            <button (click)="deleteUser(user)" class="btn btn-action">
+                <img src="assets/delete-icon.svg" alt="Delete" title="Delete">
+            </button>
+
+            <button (click)="showUser(user)" class="btn btn-plain">
+               <fa-icon class="font-size-15 color-main" [icon]="faChevronRight"></fa-icon>
+            </button>
+        </div>
+    </div>
+</div>

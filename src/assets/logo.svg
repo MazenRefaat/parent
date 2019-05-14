@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="123px" height="40px" viewBox="0 0 123 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 53.1 (72631) - https://sketchapp.com -->
+    <title>E240719A-1F62-487C-BECB-14DEAFE22AE1</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01-Login" transform="translate(-135.000000, -15.000000)" fill="#8E44AD">
+            <g id="Nav">
+                <g id="Logo" transform="translate(135.000000, 15.000000)">
+                    <path d="M16,0 C14.896,0 14,0.896 14,2 L14,4 L10,4 C6.7100604,4 4,6.7100604 4,10 L4,14 L2,14 C0.896,14 0,14.896 0,16 L0,24 C0,25.104 0.896,26 2,26 L4,26 L4,30 C4,33.28994 6.7100604,36 10,36 L14,36 L14,38 C14,39.104 14.896,40 16,40 L24,40 C25.104,40 26,39.104 26,38 L26,36 L30,36 C33.28994,36 36,33.28994 36,30 L36,26 L38,26 C39.104,26 40,25.104 40,24 L40,16 C40,14.896 39.104,14 38,14 L36,14 L36,10 C36,6.7100604 33.28994,4 30,4 L26,4 L26,2 C26,0.896 25.104,0 24,0 L16,0 Z M10,8 L14,8 L14,10 C14,11.104 14.896,12 16,12 L24,12 C25.104,12 26,11.104 26,10 L26,8 L30,8 C31.13006,8 32,8.8699396 32,10 L32,14 L30,14 C28.896,14 28,14.896 28,16 L28,24 C28,25.104 28.896,26 30,26 L32,26 L32,30 C32,31.13006 31.13006,32 30,32 L26,32 L26,30 C26,28.896 25.104,28 24,28 L16,28 C14.896,28 14,28.896 14,30 L14,32 L10,32 C8.8699396,32 8,31.13006 8,30 L8,26 L10,26 C11.104,26 12,25.104 12,24 L12,16 C12,14.896 11.104,14 10,14 L8,14 L8,10 C8,8.8699396 8.8699396,8 10,8 Z" id="Shape" fill-rule="nonzero"></path>
+                    <text id="SPACES" font-family=".SFNSDisplay, .SF NS Display" font-size="20" font-weight="normal">
+                        <tspan x="50.6113281" y="25">SPACES</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,38 @@
+.header {
+    background-color: #fff;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 0 auto;
+    padding: 15px 10%;
+    box-shadow: 0 3px 3px 0px #aaa;
+    position: relative;
+    z-index: 10;
+    
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.nav-links {
+    flex: 0 0 50%;
+    &__list {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__item {
+        list-style-type: none;
+        margin-right: 10px;
+    }
+}
+
+.link {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    text-decoration: none;
+    line-height: 18px;
+    color: #34495E;
+    text-transform: uppercase;
+}
