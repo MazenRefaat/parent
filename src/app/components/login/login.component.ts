@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   users = {};
   loginForm: FormGroup;
 
+  loginSub;
   constructor( 
       private router: Router, 
       private userService: UserService,
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
     }
 
     //{'email': 'eve.holt@reqres.in', 'password': 'cityslicka'}
-    this.userService.userLogin(user)
+    this.loginSub = this.userService.userLogin(user)
     .subscribe( 
       userToken => {
         this.toaster.success('Login Successful');
@@ -45,5 +46,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  
+  ngOnDestroy() {
+    this.loginSub.unsubscribe();
+  }
 }

@@ -47,6 +47,11 @@ export class UserListComponent implements OnInit {
   faChevronRight = faChevronRight;
   faTimes = faTimes;
 
+  listUsersSub;
+  deleteUserSub;
+  editUserSub;
+  getUserSub;
+  createUserSub;
 
   constructor(
     private userService: UserService,
@@ -55,6 +60,7 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.listUsers();
+    this.loadingUsers = true;
     setTimeout(() => {
       this.currentPage++;
       this.listUsers();
@@ -74,7 +80,7 @@ export class UserListComponent implements OnInit {
   listUsers() {
     if (!this.doneLoadingUsers) {
       this.loadingUsers = true;
-      this.userService.listUsers(this.currentPage)
+      this.listUsersSub = this.userService.listUsers(this.currentPage)
         .subscribe(usersData => {
             if (usersData.data.length == 0) {
               this.doneLoadingUsers = true;
@@ -113,7 +119,7 @@ export class UserListComponent implements OnInit {
   }
 
   selectUser(user) {
-    this.userService.getUser(user.id)
+    this.getUserSub = this.userService.getUser(user.id)
       .subscribe(
         (res) => {
           console.log(res);
@@ -141,7 +147,7 @@ export class UserListComponent implements OnInit {
         editUser.first_name = $event.user.first_name;
         editUser.last_name = $event.user.last_name;
 
-        this.userService.editUser(id, editUser)
+        this.editUserSub = this.userService.editUser(id, editUser)
           .subscribe((res) => {
             this.toaster.success('User Edited Successfully');
             console.log(res);
@@ -152,7 +158,7 @@ export class UserListComponent implements OnInit {
       }
     } else if ($event.action == 'delete') {
       if ($event.target.id == 'confirm') {
-        this.userService.deleteUser(this.currentUser)
+        this.deleteUserSub = this.userService.deleteUser(this.currentUser)
           .subscribe(() => {
             this.toaster.success('User Deleted Successfully');
           })
@@ -164,8 +170,7 @@ export class UserListComponent implements OnInit {
     } else {
       if ($event.target.id == 'save') {
         try {
-          this.userService.createUser($event.user)
-
+          this.createUserSub = this.userService.createUser($event.user)
             .subscribe(
               (res) => {
                 console.log(res);
@@ -193,5 +198,13 @@ export class UserListComponent implements OnInit {
     } else {
       this.editUser(this.selectedUser);
     }
+  }
+
+  ngOnDestry() {
+    this.listUsersSub.unsubscribe();
+    this.deleteUserSub.unsubscribe();
+    this.editUserSub.unsubscribe();
+    this.getUserSub.unsubscribe();
+    this.createUserSub.unsubscribe();
   }
 }
